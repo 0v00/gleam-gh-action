@@ -1,0 +1,15 @@
+name: 'Setup and Run Gleam'
+description: 'Sets up Gleam environment, runs Gleam code, and processes a pull request'
+inputs:
+  pr_id:
+    description: 'The ID of the pull request to process'
+    required: true
+runs:
+  using: "docker"
+  image: "Dockerfile"
+  env:
+    TEST_SECRET: ${{ inputs.test_secret }}
+  args:
+    - run
+    - pr
+    - ${{ inputs.pr_id }}
